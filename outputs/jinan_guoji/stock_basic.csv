@@ -1,0 +1,2 @@
+﻿market,name,note,symbol,ts_code
+主板,金安国纪,静态写入，避免触发 Tushare stock_basic 每小时频率限制。,002636,002636.SZ
