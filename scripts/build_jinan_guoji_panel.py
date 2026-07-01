@@ -509,6 +509,557 @@ def build_html(panel: dict[str, Any]) -> str:
 """
 
 
+def build_html_v2(panel: dict[str, Any]) -> str:
+    data_json = json.dumps(panel, ensure_ascii=False)
+    escaped_title = html.escape(f"{COMPANY_NAME}（{TS_CODE}）研究面板")
+    template = """<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>__TITLE__</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f4f6f9;
+      --panel: #ffffff;
+      --panel-soft: #f9fbff;
+      --ink: #172033;
+      --muted: #69758a;
+      --line: #dfe6ef;
+      --red: #d84a3a;
+      --green: #128764;
+      --blue: #2563eb;
+      --amber: #b7791f;
+      --shadow: 0 12px 30px rgba(23, 32, 51, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+    header {
+      padding: 22px 24px 16px;
+      background: linear-gradient(180deg, #ffffff 0%, #f7faff 100%);
+      border-bottom: 1px solid var(--line);
+    }
+    .header-inner {
+      max-width: 1500px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: end;
+    }
+    h1 {
+      margin: 0;
+      font-size: 26px;
+      letter-spacing: 0;
+    }
+    .subtitle {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+    .chip {
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    main {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 14px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 390px;
+      gap: 14px;
+    }
+    .kpis {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .card, .metric {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+    .metric {
+      min-height: 92px;
+      padding: 12px;
+    }
+    .metric .label, .label {
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .metric .value {
+      margin-top: 8px;
+      font-size: 22px;
+      font-weight: 750;
+      letter-spacing: 0;
+    }
+    .metric .hint {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .workspace {
+      min-width: 0;
+      display: grid;
+      gap: 14px;
+    }
+    .side {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+    .card {
+      padding: 14px;
+    }
+    .card-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+    h2 {
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+    .canvas-shell {
+      height: 610px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      overflow: hidden;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .mini {
+      padding: 10px;
+      background: var(--panel-soft);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      min-height: 72px;
+    }
+    .mini strong {
+      display: block;
+      margin-top: 7px;
+      font-size: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    th, td {
+      padding: 8px 4px;
+      border-bottom: 1px solid var(--line);
+      text-align: right;
+      vertical-align: top;
+    }
+    th:first-child, td:first-child, .left { text-align: left; }
+    .scroll { max-height: 360px; overflow: auto; }
+    .positive { color: var(--red); }
+    .negative { color: var(--green); }
+    .note {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+    .timeline {
+      display: grid;
+      gap: 8px;
+    }
+    .event {
+      display: grid;
+      grid-template-columns: 82px minmax(0, 1fr);
+      gap: 8px;
+      padding: 9px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--panel-soft);
+      font-size: 12px;
+    }
+    .links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .links a {
+      display: block;
+      padding: 9px 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      color: var(--blue);
+      text-decoration: none;
+      background: #fff;
+      font-size: 12px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    footer {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 0 14px 24px;
+    }
+    @media (max-width: 1120px) {
+      main { grid-template-columns: 1fr; }
+      .kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .header-inner { grid-template-columns: 1fr; }
+      .chips { justify-content: flex-start; }
+    }
+    @media (max-width: 720px) {
+      header { padding: 18px 14px 12px; }
+      main { padding: 10px; }
+      .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .mini-grid { grid-template-columns: 1fr; }
+      .canvas-shell { height: 500px; }
+      .links { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div>
+        <h1>金安国纪研究面板</h1>
+        <div class="subtitle" id="meta"></div>
+      </div>
+      <div class="chips">
+        <span class="chip">Tushare Pro</span>
+        <span class="chip">近一年日线</span>
+        <span class="chip">静态 GitHub Pages</span>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="kpis" id="kpis"></section>
+    <section class="workspace">
+      <div class="card">
+        <div class="card-title">
+          <h2>K线、均线与成交量</h2>
+          <span class="note">MA5 / MA20；红涨绿跌</span>
+        </div>
+        <div class="canvas-shell">
+          <canvas id="priceChart" aria-label="金安国纪K线与成交量"></canvas>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">
+          <h2>区间统计</h2>
+          <span class="note">由本地日线数据计算</span>
+        </div>
+        <div class="mini-grid" id="rangeStats"></div>
+      </div>
+    </section>
+    <aside class="side">
+      <div class="card">
+        <div class="card-title">
+          <h2>交易活跃度 Top 10</h2>
+          <span class="note">按成交额排序</span>
+        </div>
+        <div class="scroll" id="turnover"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">
+          <h2>分红与财务可得性</h2>
+          <span class="note">受账号权限影响</span>
+        </div>
+        <div id="finance"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">
+          <h2>数据下载</h2>
+          <span class="note">CSV / JSON / HTML</span>
+        </div>
+        <div class="links" id="files"></div>
+      </div>
+    </aside>
+  </main>
+  <footer>
+    <div class="card note" id="dataNotes"></div>
+  </footer>
+  <script>
+    const panel = __DATA__;
+    const daily = panel.daily || [];
+    const basics = new Map((panel.daily_basic || []).map(row => [row.trade_date, row]));
+
+    function n(v) {
+      const x = Number(v);
+      return Number.isFinite(x) ? x : null;
+    }
+    function fmtNum(v, digits = 2) {
+      const x = n(v);
+      return x === null ? "-" : x.toFixed(digits);
+    }
+    function money(v) {
+      const x = n(v);
+      if (x === null) return "-";
+      if (Math.abs(x) >= 100000000) return (x / 100000000).toFixed(2) + "亿";
+      if (Math.abs(x) >= 10000) return (x / 10000).toFixed(2) + "万";
+      return x.toFixed(2);
+    }
+    function pct(v) {
+      const x = n(v);
+      return x === null ? "-" : x.toFixed(2) + "%";
+    }
+    function dateLabel(raw) {
+      if (!raw) return "-";
+      return raw.slice(0, 4) + "-" + raw.slice(4, 6) + "-" + raw.slice(6, 8);
+    }
+    function cls(v) {
+      const x = n(v);
+      return x === null ? "" : x >= 0 ? "positive" : "negative";
+    }
+    function ma(values, windowSize) {
+      return values.map((_, i) => {
+        if (i + 1 < windowSize) return null;
+        let total = 0;
+        for (let j = i - windowSize + 1; j <= i; j++) total += values[j];
+        return total / windowSize;
+      });
+    }
+    function calc() {
+      const first = daily[0] || {};
+      const last = daily[daily.length - 1] || {};
+      const closes = daily.map(r => n(r.close)).filter(v => v !== null);
+      const highs = daily.map(r => n(r.high)).filter(v => v !== null);
+      const lows = daily.map(r => n(r.low)).filter(v => v !== null);
+      const amounts = daily.map(r => n(r.amount) || 0);
+      const volumes = daily.map(r => n(r.vol) || 0);
+      const ret = n(first.close) ? ((n(last.close) - n(first.close)) / n(first.close)) * 100 : null;
+      const avgAmount = amounts.reduce((a, b) => a + b, 0) / Math.max(amounts.length, 1) * 1000;
+      const avgVol = volumes.reduce((a, b) => a + b, 0) / Math.max(volumes.length, 1);
+      const maxClose = Math.max(...closes);
+      const minClose = Math.min(...closes);
+      const maxHigh = Math.max(...highs);
+      const minLow = Math.min(...lows);
+      return { first, last, ret, avgAmount, avgVol, maxClose, minClose, maxHigh, minLow };
+    }
+
+    function renderMeta() {
+      document.getElementById("meta").textContent =
+        `${panel.meta.company} ${panel.meta.ts_code} · ${dateLabel(panel.meta.start_date)} 至 ${dateLabel(panel.meta.end_date)} · 生成于 ${panel.meta.generated_at}`;
+    }
+
+    function renderKpis() {
+      const s = calc();
+      const dividends = panel.finance?.dividend || [];
+      const latestDividend = dividends[dividends.length - 1];
+      const lastBasic = basics.get(s.last.trade_date) || {};
+      const items = [
+        ["最新收盘", fmtNum(s.last.close), dateLabel(s.last.trade_date), cls(s.last.pct_chg)],
+        ["当日涨跌幅", pct(s.last.pct_chg), `涨跌额 ${fmtNum(s.last.change)}`, cls(s.last.pct_chg)],
+        ["区间涨跌幅", pct(s.ret), `${dateLabel(s.first.trade_date)} 起`, cls(s.ret)],
+        ["区间高低", `${fmtNum(s.maxHigh)} / ${fmtNum(s.minLow)}`, "最高价 / 最低价", ""],
+        ["平均成交额", money(s.avgAmount), "日均成交额", ""],
+        ["PE(TTM) / PB", `${fmtNum(lastBasic.pe_ttm)} / ${fmtNum(lastBasic.pb)}`, "受 daily_basic 权限影响", ""],
+      ];
+      document.getElementById("kpis").innerHTML = items.map(([label, value, hint, klass]) =>
+        `<div class="metric"><div class="label">${label}</div><div class="value ${klass}">${value}</div><div class="hint">${hint}</div></div>`
+      ).join("");
+    }
+
+    function drawChart() {
+      const canvas = document.getElementById("priceChart");
+      const ctx = canvas.getContext("2d");
+      const dpr = window.devicePixelRatio || 1;
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      canvas.width = Math.max(1, Math.floor(width * dpr));
+      canvas.height = Math.max(1, Math.floor(height * dpr));
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = "#fff";
+      ctx.fillRect(0, 0, width, height);
+      if (!daily.length) return;
+
+      const pad = { left: 58, right: 22, top: 22, bottom: 38 };
+      const volTop = Math.floor(height * 0.74);
+      const candleBottom = volTop - 20;
+      const plotW = width - pad.left - pad.right;
+      const candleH = candleBottom - pad.top;
+      const volH = height - volTop - pad.bottom;
+      const highs = daily.map(r => n(r.high)).filter(v => v !== null);
+      const lows = daily.map(r => n(r.low)).filter(v => v !== null);
+      const vols = daily.map(r => n(r.vol)).filter(v => v !== null);
+      const closes = daily.map(r => n(r.close) || 0);
+      const ma5 = ma(closes, 5);
+      const ma20 = ma(closes, 20);
+      const maxPrice = Math.max(...highs, ...ma5.filter(Boolean), ...ma20.filter(Boolean)) * 1.02;
+      const minPrice = Math.min(...lows, ...ma5.filter(Boolean), ...ma20.filter(Boolean)) * 0.98;
+      const maxVol = Math.max(...vols) * 1.08;
+      const xStep = plotW / Math.max(daily.length, 1);
+      const candleW = Math.max(2, Math.min(8, xStep * 0.62));
+      const xAt = i => pad.left + i * xStep + xStep / 2;
+      const yPrice = v => pad.top + (maxPrice - v) / (maxPrice - minPrice) * candleH;
+      const yVol = v => volTop + (maxVol - v) / maxVol * volH;
+
+      ctx.strokeStyle = "#dfe6ef";
+      ctx.lineWidth = 1;
+      ctx.fillStyle = "#69758a";
+      ctx.font = "12px Microsoft YaHei, Arial";
+      for (let i = 0; i <= 5; i++) {
+        const y = pad.top + i / 5 * candleH;
+        ctx.beginPath();
+        ctx.moveTo(pad.left, y);
+        ctx.lineTo(width - pad.right, y);
+        ctx.stroke();
+        const value = maxPrice - i / 5 * (maxPrice - minPrice);
+        ctx.fillText(value.toFixed(2), 8, y + 4);
+      }
+      ctx.beginPath();
+      ctx.moveTo(pad.left, volTop);
+      ctx.lineTo(width - pad.right, volTop);
+      ctx.stroke();
+
+      daily.forEach((row, i) => {
+        const open = n(row.open), close = n(row.close), high = n(row.high), low = n(row.low), vol = n(row.vol);
+        if ([open, close, high, low, vol].some(v => v === null)) return;
+        const x = xAt(i);
+        const up = close >= open;
+        const color = up ? "#d84a3a" : "#128764";
+        ctx.strokeStyle = color;
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.moveTo(x, yPrice(high));
+        ctx.lineTo(x, yPrice(low));
+        ctx.stroke();
+        const top = yPrice(Math.max(open, close));
+        const bottom = yPrice(Math.min(open, close));
+        ctx.fillRect(x - candleW / 2, top, candleW, Math.max(1, bottom - top));
+        ctx.globalAlpha = 0.28;
+        ctx.fillRect(x - candleW / 2, yVol(vol), candleW, volTop + volH - yVol(vol));
+        ctx.globalAlpha = 1;
+      });
+
+      function line(values, color, labelY) {
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 1.6;
+        ctx.beginPath();
+        let started = false;
+        values.forEach((v, i) => {
+          if (v == null) return;
+          const x = xAt(i), y = yPrice(v);
+          if (!started) { ctx.moveTo(x, y); started = true; }
+          else ctx.lineTo(x, y);
+        });
+        ctx.stroke();
+      }
+      line(ma5, "#2563eb");
+      line(ma20, "#b7791f");
+      ctx.fillStyle = "#2563eb";
+      ctx.fillText("MA5", width - 86, 20);
+      ctx.fillStyle = "#b7791f";
+      ctx.fillText("MA20", width - 46, 20);
+      ctx.fillStyle = "#69758a";
+      ctx.fillText("成交量", 8, volTop + 18);
+      for (let i = 0; i < 6; i++) {
+        const idx = Math.floor(i * (daily.length - 1) / 5);
+        ctx.fillText(dateLabel(daily[idx].trade_date).slice(5), xAt(idx) - 16, height - 12);
+      }
+    }
+
+    function renderRangeStats() {
+      const s = calc();
+      const upDays = daily.filter(r => n(r.pct_chg) > 0).length;
+      const downDays = daily.filter(r => n(r.pct_chg) < 0).length;
+      const maxDay = [...daily].sort((a, b) => (n(b.pct_chg) || 0) - (n(a.pct_chg) || 0))[0] || {};
+      const minDay = [...daily].sort((a, b) => (n(a.pct_chg) || 0) - (n(b.pct_chg) || 0))[0] || {};
+      const items = [
+        ["交易日数量", `${daily.length} 天`, "覆盖 Tushare 日线记录"],
+        ["上涨 / 下跌天数", `${upDays} / ${downDays}`, "按日涨跌幅统计"],
+        ["最大单日上涨", `${dateLabel(maxDay.trade_date)} · ${pct(maxDay.pct_chg)}`, `收盘 ${fmtNum(maxDay.close)}`],
+        ["最大单日下跌", `${dateLabel(minDay.trade_date)} · ${pct(minDay.pct_chg)}`, `收盘 ${fmtNum(minDay.close)}`],
+        ["最高 / 最低价", `${fmtNum(s.maxHigh)} / ${fmtNum(s.minLow)}`, "区间 high / low"],
+        ["日均成交量", `${fmtNum(s.avgVol, 0)} 手`, "Tushare vol 字段"],
+      ];
+      document.getElementById("rangeStats").innerHTML = items.map(([label, value, hint]) =>
+        `<div class="mini"><div class="label">${label}</div><strong>${value}</strong><div class="note">${hint}</div></div>`
+      ).join("");
+    }
+
+    function renderTurnover() {
+      const rows = [...daily].sort((a, b) => (n(b.amount) || 0) - (n(a.amount) || 0)).slice(0, 10);
+      document.getElementById("turnover").innerHTML = `<table>
+        <thead><tr><th>日期</th><th>涨跌幅</th><th>成交额</th><th>收盘</th></tr></thead>
+        <tbody>${rows.map(r => `<tr>
+          <td class="left">${dateLabel(r.trade_date)}</td>
+          <td class="${cls(r.pct_chg)}">${pct(r.pct_chg)}</td>
+          <td>${money((n(r.amount) || 0) * 1000)}</td>
+          <td>${fmtNum(r.close)}</td>
+        </tr>`).join("")}</tbody>
+      </table>`;
+    }
+
+    function renderFinance() {
+      const dividends = panel.finance?.dividend || [];
+      const latest = dividends.slice(-6).reverse();
+      const accessNote = panel.meta?.data_notes?.financial_statement_access || "";
+      document.getElementById("finance").innerHTML = `
+        <div class="note">${accessNote}</div>
+        <div class="timeline" style="margin-top:10px;">
+          ${latest.map(r => `<div class="event">
+            <div>${dateLabel(r.end_date)}</div>
+            <div><strong>${r.div_proc || "-"}</strong><br>现金分红 ${fmtNum(r.cash_div, 3)}；除权日 ${r.ex_date ? dateLabel(r.ex_date) : "-"}</div>
+          </div>`).join("")}
+        </div>`;
+    }
+
+    function renderFiles() {
+      const files = panel.meta.files || [];
+      document.getElementById("files").innerHTML = files.map(f => `<a href="${f}" download>${f}</a>`).join("");
+      const rows = panel.meta.row_counts || {};
+      document.getElementById("dataNotes").innerHTML =
+        `数据行数：日线 ${rows.daily || 0}，每日指标 ${rows.daily_basic || 0}，分红 ${rows.dividend || 0}。` +
+        `财务报表接口受当前 Tushare token 权限限制；面板保留空 CSV 和错误摘要，便于后续升级权限后重新生成。`;
+    }
+
+    renderMeta();
+    renderKpis();
+    drawChart();
+    renderRangeStats();
+    renderTurnover();
+    renderFinance();
+    renderFiles();
+    window.addEventListener("resize", drawChart);
+  </script>
+</body>
+</html>
+"""
+    return template.replace("__TITLE__", escaped_title).replace("__DATA__", data_json)
+
+
 def main() -> None:
     token = read_tushare_token()
     start = ymd(START_DATE)
@@ -653,7 +1204,7 @@ def main() -> None:
         "api_errors": api_errors,
     }
     write_json(OUT_DIR / "panel_data.json", panel)
-    (OUT_DIR / "index.html").write_text(build_html(panel), encoding="utf-8")
+    (OUT_DIR / "index.html").write_text(build_html_v2(panel), encoding="utf-8")
 
     print(json.dumps(panel["meta"], ensure_ascii=False, indent=2))
 
