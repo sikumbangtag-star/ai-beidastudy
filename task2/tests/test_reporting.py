@@ -58,6 +58,7 @@ class ReportingTests(unittest.TestCase):
                     "volume.svg",
                     "rsi.svg",
                     "macd.svg",
+                    "kdj.svg",
                     "atr.svg",
                 },
             )

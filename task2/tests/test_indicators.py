@@ -65,10 +65,17 @@ class IndicatorTests(unittest.TestCase):
             "boll_width",
             "tr",
             "atr_14",
+            "kdj_k",
+            "kdj_d",
+            "kdj_j",
         }
         self.assertTrue(expected.issubset(result.columns))
         self.assertGreater(result["rsi_14"].dropna().iloc[-1], 0)
         self.assertLessEqual(result["rsi_14"].dropna().iloc[-1], 100)
+        self.assertGreaterEqual(result["kdj_k"].dropna().iloc[-1], 0)
+        self.assertLessEqual(result["kdj_k"].dropna().iloc[-1], 100)
+        self.assertGreaterEqual(result["kdj_d"].dropna().iloc[-1], 0)
+        self.assertLessEqual(result["kdj_d"].dropna().iloc[-1], 100)
         self.assertGreater(result["atr_14"].dropna().iloc[-1], 0)
         self.assertGreater(result["boll_upper"].dropna().iloc[-1], result["boll_lower"].dropna().iloc[-1])
 

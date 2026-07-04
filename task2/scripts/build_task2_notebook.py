@@ -115,6 +115,7 @@ def build_notebook() -> dict:
             "- RSI 使用 14 日 Wilder 平滑。\n"
             "- MACD 使用 12、26、9 参数。\n"
             "- 布林带使用 20 日均线和 2 倍标准差。\n"
+            "- KDJ 使用 9、3、3 参数。\n"
             "- ATR 使用 14 日真实波幅 Wilder 平滑。"
         ),
         code_cell(
@@ -144,12 +145,15 @@ def build_notebook() -> dict:
         svg_display_cell("RSI", "rsi.svg"),
         markdown_cell("### MACD"),
         svg_display_cell("MACD", "macd.svg"),
+        markdown_cell("### KDJ"),
+        svg_display_cell("KDJ", "kdj.svg"),
         markdown_cell("### ATR"),
         svg_display_cell("ATR", "atr.svg"),
         markdown_cell(
             "## 7. 简短结论和风险提示\n\n"
             "技术指标显示的是历史价格、趋势动能和波动状态。RSI 用于观察短期强弱，MACD 用于观察趋势动能，"
-            "布林带用于观察价格相对均值的位置，ATR 用于观察波动风险。以上结果不构成投资建议。"
+            "布林带用于观察价格相对均值的位置，KDJ 用于观察价格在近期高低区间中的位置，"
+            "ATR 用于观察波动风险。以上结果不构成投资建议。"
         ),
     ]
 

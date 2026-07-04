@@ -210,6 +210,17 @@ def write_all_svg_charts(df: pd.DataFrame, output_dir: Path) -> list[Path]:
             [("rsi_14", "#7c3aed")],
         ),
         write_macd_chart(df, output_dir / "macd.svg"),
+        write_line_chart(
+            df,
+            output_dir / "kdj.svg",
+            "KDJ 9,3,3",
+            "K / D / J 随机指标",
+            [
+                ("kdj_k", "#2563eb"),
+                ("kdj_d", "#f59e0b"),
+                ("kdj_j", "#7c3aed"),
+            ],
+        ),
         write_line_chart(df, output_dir / "atr.svg", "ATR 14", "平均真实波幅", [("atr_14", "#dc2626")]),
     ]
     return paths

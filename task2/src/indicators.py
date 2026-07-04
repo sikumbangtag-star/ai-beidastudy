@@ -109,11 +109,47 @@ def add_atr(df: pd.DataFrame, period: int = 14) -> pd.DataFrame:
     return result
 
 
+def add_kdj(
+    df: pd.DataFrame,
+    period: int = 9,
+    k_smoothing: int = 3,
+    d_smoothing: int = 3,
+) -> pd.DataFrame:
+    result = df.copy()
+    lowest_low = result["low"].rolling(window=period, min_periods=period).min()
+    highest_high = result["high"].rolling(window=period, min_periods=period).max()
+    denominator = (highest_high - lowest_low).replace(0, np.nan)
+    rsv = (result["close"] - lowest_low) / denominator * 100
+
+    k_values = []
+    d_values = []
+    prev_k = 50.0
+    prev_d = 50.0
+    k_alpha = 1 / k_smoothing
+    d_alpha = 1 / d_smoothing
+
+    for value in rsv:
+        if pd.isna(value):
+            k_values.append(np.nan)
+            d_values.append(np.nan)
+            continue
+        prev_k = (1 - k_alpha) * prev_k + k_alpha * float(value)
+        prev_d = (1 - d_alpha) * prev_d + d_alpha * prev_k
+        k_values.append(prev_k)
+        d_values.append(prev_d)
+
+    result["kdj_k"] = k_values
+    result["kdj_d"] = d_values
+    result["kdj_j"] = 3 * result["kdj_k"] - 2 * result["kdj_d"]
+    return result
+
+
 def add_all_indicators(df: pd.DataFrame) -> pd.DataFrame:
     result = add_rsi(df, period=14)
     result = add_macd(result, fast=12, slow=26, signal=9)
     result = add_bollinger_bands(result, window=20, num_std=2.0)
     result = add_atr(result, period=14)
+    result = add_kdj(result, period=9, k_smoothing=3, d_smoothing=3)
     return result
 
 
