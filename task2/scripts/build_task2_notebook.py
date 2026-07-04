@@ -33,6 +33,32 @@ def code_cell(code: str) -> dict:
     }
 
 
+def svg_display_cell(title: str, filename: str) -> dict:
+    svg_path = FIGURE_DIR / filename
+    svg_text = svg_path.read_text(encoding="utf-8") if svg_path.exists() else ""
+    source = (
+        f"# {title}\n"
+        "try:\n"
+        "    from IPython.display import SVG, display\n"
+        f"    display(SVG(filename=str(FIGURE_DIR / '{filename}')))\n"
+        "except Exception:\n"
+        f"    print('图表文件: ' + str(FIGURE_DIR / '{filename}'))\n"
+    )
+    cell = code_cell(source)
+    if svg_text:
+        cell["outputs"] = [
+            {
+                "output_type": "display_data",
+                "metadata": {},
+                "data": {
+                    "image/svg+xml": svg_text,
+                    "text/plain": f"<SVG: {title}>",
+                },
+            }
+        ]
+    return cell
+
+
 def build_notebook() -> dict:
     cells = [
         markdown_cell(
@@ -110,11 +136,16 @@ def build_notebook() -> dict:
             "for path in figure_paths:\n"
             "    print(path)"
         ),
-        markdown_cell("### 收盘价与布林带\n\n![收盘价与布林带](../outputs/figures/price_bollinger.svg)"),
-        markdown_cell("### 成交量\n\n![成交量](../outputs/figures/volume.svg)"),
-        markdown_cell("### RSI\n\n![RSI](../outputs/figures/rsi.svg)"),
-        markdown_cell("### MACD\n\n![MACD](../outputs/figures/macd.svg)"),
-        markdown_cell("### ATR\n\n![ATR](../outputs/figures/atr.svg)"),
+        markdown_cell("### 收盘价与布林带"),
+        svg_display_cell("收盘价与布林带", "price_bollinger.svg"),
+        markdown_cell("### 成交量"),
+        svg_display_cell("成交量", "volume.svg"),
+        markdown_cell("### RSI"),
+        svg_display_cell("RSI", "rsi.svg"),
+        markdown_cell("### MACD"),
+        svg_display_cell("MACD", "macd.svg"),
+        markdown_cell("### ATR"),
+        svg_display_cell("ATR", "atr.svg"),
         markdown_cell(
             "## 7. 简短结论和风险提示\n\n"
             "技术指标显示的是历史价格、趋势动能和波动状态。RSI 用于观察短期强弱，MACD 用于观察趋势动能，"
