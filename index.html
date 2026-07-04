@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="1; url=task2/design/multi_stock_indicator_panel.html">
+  <title>北大光华作业面板</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #f4f6f8;
+      color: #172033;
+      font-family: "Microsoft YaHei", "Segoe UI", Arial, sans-serif;
+      letter-spacing: 0;
+    }
+
+    main {
+      width: min(720px, calc(100% - 32px));
+      padding: 28px;
+      background: #fff;
+      border: 1px solid #e1e7f0;
+      border-radius: 8px;
+      box-shadow: 0 14px 32px rgba(17, 24, 39, 0.08);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 26px;
+      color: #111827;
+    }
+
+    p {
+      margin: 0 0 18px;
+      color: #4b5563;
+      line-height: 1.7;
+    }
+
+    .links {
+      display: grid;
+      gap: 10px;
+    }
+
+    a {
+      display: block;
+      padding: 12px 14px;
+      border: 1px solid #d9dee7;
+      border-radius: 8px;
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 700;
+      background: #f8fafc;
+    }
+
+    a:hover {
+      border-color: #2563eb;
+      background: #eff6ff;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>北大光华作业面板</h1>
+    <p>正在打开 Task2 多股票技术指标交互面板。如果没有自动跳转，可以点击下面的链接。</p>
+    <div class="links">
+      <a href="task2/design/multi_stock_indicator_panel.html">打开 Task2 多股票技术指标交互面板</a>
+      <a href="task1/outputs/jinan_guoji/index.html">打开 Task1 金安国纪 K 线与成交量面板</a>
+    </div>
+  </main>
+  <script>
+    window.setTimeout(function () {
+      window.location.replace("task2/design/multi_stock_indicator_panel.html");
+    }, 300);
+  </script>
+</body>
+</html>
