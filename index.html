@@ -12,76 +12,188 @@
     body {
       margin: 0;
       min-height: 100vh;
-      display: grid;
-      place-items: center;
-      background: #f4f6f8;
+      background: #f5f7fb;
       color: #172033;
       font-family: "Microsoft YaHei", "Segoe UI", Arial, sans-serif;
       letter-spacing: 0;
     }
 
     main {
-      width: min(780px, calc(100% - 32px));
-      padding: 28px;
-      background: #fff;
-      border: 1px solid #e1e7f0;
-      border-radius: 8px;
-      box-shadow: 0 14px 32px rgba(17, 24, 39, 0.08);
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 44px 0;
+    }
+
+    .hero {
+      margin-bottom: 22px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
     }
 
     h1 {
-      margin: 0 0 10px;
-      font-size: 26px;
+      margin: 0 0 8px;
+      font-size: 30px;
       color: #111827;
     }
 
     p {
-      margin: 0 0 18px;
-      color: #4b5563;
+      margin: 0;
+      color: #5b6475;
       line-height: 1.7;
     }
 
-    .links {
+    .updated {
+      padding: 8px 12px;
+      border: 1px solid #d9e0ea;
+      border-radius: 6px;
+      background: #fff;
+      color: #4b5563;
+      white-space: nowrap;
+      font-size: 13px;
+    }
+
+    .task-grid {
       display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .task-card {
+      min-width: 0;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 18px;
+      border: 1px solid #d9e0ea;
+      border-radius: 8px;
+      background: #fff;
+      color: inherit;
+      text-decoration: none;
+      box-shadow: 0 10px 26px rgba(17, 24, 39, 0.06);
+      transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .task-card:hover {
+      transform: translateY(-3px);
+      border-color: #2563eb;
+      box-shadow: 0 14px 34px rgba(17, 24, 39, 0.1);
+    }
+
+    .task-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       gap: 10px;
     }
 
-    a {
-      display: block;
-      padding: 12px 14px;
-      border: 1px solid #d9dee7;
+    .task-no {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
       border-radius: 8px;
-      color: #2563eb;
-      text-decoration: none;
-      font-weight: 700;
-      background: #f8fafc;
-    }
-
-    a.primary {
       color: #fff;
-      background: #2563eb;
-      border-color: #2563eb;
+      font-weight: 800;
+      font-size: 18px;
     }
 
-    a:hover {
-      border-color: #2563eb;
-      background: #eff6ff;
+    .task-tag {
+      color: #687387;
+      font-size: 12px;
+      font-weight: 700;
     }
 
-    a.primary:hover {
-      background: #1d4ed8;
+    .task-card h2 {
+      margin: 0;
+      color: #111827;
+      font-size: 21px;
+      line-height: 1.25;
+    }
+
+    .task-card p {
+      font-size: 13px;
+    }
+
+    .task-link {
+      color: #2563eb;
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .task4 .task-no { background: #2563eb; }
+    .task3 .task-no { background: #168567; }
+    .task2 .task-no { background: #d97706; }
+    .task1 .task-no { background: #7c3aed; }
+
+    @media (max-width: 980px) {
+      .task-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      main {
+        padding: 28px 0;
+      }
+
+      .hero {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .task-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .task-card {
+        aspect-ratio: auto;
+        min-height: 210px;
+      }
     }
   </style>
 </head>
 <body>
   <main>
-    <h1>北大光华作业面板</h1>
-    <p>请选择要查看的作业面板。Task3 是最新的双均线策略回测看板。</p>
-    <div class="links">
-      <a class="primary" href="task3/design/dual_ma_strategy_panel.html">打开 Task3 双均线策略回测看板</a>
-      <a href="task2/design/multi_stock_indicator_panel.html">打开 Task2 多股票技术指标交互面板</a>
-      <a href="task1/outputs/jinan_guoji/index.html">打开 Task1 金安国纪 K 线与成交量面板</a>
-    </div>
+    <section class="hero">
+      <div>
+        <h1>北大光华作业面板</h1>
+        <p>选择课程任务进入对应的量化分析看板。Task4 是最新的海龟策略与 ATR 风控回测。</p>
+      </div>
+      <div class="updated">已部署 Task1 - Task4</div>
+    </section>
+
+    <section class="task-grid" aria-label="作业任务入口">
+      <a class="task-card task4" href="task4/design/turtle_strategy_panel.html">
+        <div class="task-top"><span class="task-no">04</span><span class="task-tag">最新</span></div>
+        <h2>海龟策略回测</h2>
+        <p>高低价通道、ATR 止损、仓位管理、交易记录与策略指标。</p>
+        <span class="task-link">打开 Task4</span>
+      </a>
+
+      <a class="task-card task3" href="task3/design/dual_ma_strategy_panel.html">
+        <div class="task-top"><span class="task-no">03</span><span class="task-tag">策略</span></div>
+        <h2>双均线策略</h2>
+        <p>均线信号、过滤条件、模拟交易、净值曲线与回测指标。</p>
+        <span class="task-link">打开 Task3</span>
+      </a>
+
+      <a class="task-card task2" href="task2/design/multi_stock_indicator_panel.html">
+        <div class="task-top"><span class="task-no">02</span><span class="task-tag">指标</span></div>
+        <h2>多股票技术指标</h2>
+        <p>RSI、MACD、布林带、ATR、KDJ 与多股票切换展示。</p>
+        <span class="task-link">打开 Task2</span>
+      </a>
+
+      <a class="task-card task1" href="task1/outputs/jinan_guoji/index.html">
+        <div class="task-top"><span class="task-no">01</span><span class="task-tag">基础</span></div>
+        <h2>金安国纪行情</h2>
+        <p>K 线、成交量、基础行情数据和本地静态面板。</p>
+        <span class="task-link">打开 Task1</span>
+      </a>
+    </section>
   </main>
 </body>
 </html>
