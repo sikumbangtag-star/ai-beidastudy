@@ -123,6 +123,7 @@
       font-size: 13px;
     }
 
+    .task5 .task-no { background: #dc2626; }
     .task4 .task-no { background: #2563eb; }
     .task3 .task-no { background: #168567; }
     .task2 .task-no { background: #d97706; }
@@ -160,14 +161,21 @@
     <section class="hero">
       <div>
         <h1>北大光华作业面板</h1>
-        <p>选择课程任务进入对应的量化分析看板。Task4 是最新的海龟策略与 ATR 风控回测。</p>
+        <p>选择课程任务进入对应的量化分析看板。Task5 是最新的机器学习分类模型、AUC 与 ROC 分析。</p>
       </div>
-      <div class="updated">已部署 Task1 - Task4</div>
+      <div class="updated">已部署 Task1 - Task5</div>
     </section>
 
     <section class="task-grid" aria-label="作业任务入口">
+      <a class="task-card task5" href="task5/design/ml_classification_panel.html">
+        <div class="task-top"><span class="task-no">05</span><span class="task-tag">最新</span></div>
+        <h2>机器学习分类模型</h2>
+        <p>日期划分训练、验证和测试集，比较线性回归、逻辑回归、决策树、随机森林的 AUC、ROC、混淆矩阵与特征贡献。</p>
+        <span class="task-link">打开 Task5</span>
+      </a>
+
       <a class="task-card task4" href="task4/design/turtle_strategy_panel.html">
-        <div class="task-top"><span class="task-no">04</span><span class="task-tag">最新</span></div>
+        <div class="task-top"><span class="task-no">04</span><span class="task-tag">策略</span></div>
         <h2>海龟策略回测</h2>
         <p>高低价通道、ATR 止损、仓位管理、交易记录与策略指标。</p>
         <span class="task-link">打开 Task4</span>

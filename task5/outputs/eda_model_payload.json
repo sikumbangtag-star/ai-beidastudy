@@ -1,0 +1,932 @@
+{
+  "target_distribution": [
+    {
+      "label": 0,
+      "count": 12383
+    },
+    {
+      "label": 1,
+      "count": 8389
+    }
+  ],
+  "split_summary": [
+    {
+      "split": "train",
+      "n_samples": 14540,
+      "positive_rate": 0.4575653370013755,
+      "start_date": "2021-06-30",
+      "end_date": "2022-03-31"
+    },
+    {
+      "split": "valid",
+      "n_samples": 4154,
+      "positive_rate": 0.3208955223880597,
+      "start_date": "2022-03-31",
+      "end_date": "2022-06-30"
+    },
+    {
+      "split": "test",
+      "n_samples": 2078,
+      "positive_rate": 0.19393647738209818,
+      "start_date": "2022-06-30",
+      "end_date": "2022-06-30"
+    }
+  ],
+  "feature_columns": [
+    "企业倍数(EV除EBITDA)",
+    "市净率PB(MRQ)",
+    "市现率PCF(现金净流量TTM)",
+    "市现率PCF(经营现金流TTM)",
+    "市盈率PE(TTM)",
+    "市盈率PE(TTM,扣除非经常性损益)",
+    "市销率PS(TTM)",
+    "股息率(近12个月)",
+    "MV",
+    "净利润同比增长率",
+    "净资产同比增长率",
+    "利润总额(同比增长率)",
+    "基本每股收益(同比增长率)",
+    "总资产同比增长率",
+    "现金净流量同比增长率",
+    "营业利润(同比增长率)",
+    "营业总收入(同比增长率)"
+  ],
+  "correlation_matrix": {
+    "columns": [
+      "企业倍数(EV除EBITDA)",
+      "市净率PB(MRQ)",
+      "市现率PCF(现金净流量TTM)",
+      "市现率PCF(经营现金流TTM)",
+      "市盈率PE(TTM)",
+      "市盈率PE(TTM,扣除非经常性损益)",
+      "市销率PS(TTM)",
+      "股息率(近12个月)",
+      "MV",
+      "净利润同比增长率",
+      "净资产同比增长率",
+      "利润总额(同比增长率)",
+      "基本每股收益(同比增长率)",
+      "总资产同比增长率",
+      "现金净流量同比增长率",
+      "营业利润(同比增长率)",
+      "营业总收入(同比增长率)"
+    ],
+    "values": [
+      [
+        1.0,
+        0.0008,
+        0.0002,
+        0.0023,
+        0.0003,
+        0.0035,
+        -0.0004,
+        -0.0114,
+        -0.0003,
+        -0.0,
+        -0.0005,
+        -0.0008,
+        -0.0008,
+        -0.0038,
+        0.0001,
+        -0.0003,
+        -0.0002
+      ],
+      [
+        0.0008,
+        1.0,
+        -0.0004,
+        0.0018,
+        -0.0004,
+        -0.0256,
+        -0.0,
+        -0.0153,
+        0.0036,
+        -0.0014,
+        0.0019,
+        -0.0013,
+        -0.0058,
+        0.0207,
+        0.0005,
+        -0.0002,
+        0.0038
+      ],
+      [
+        0.0002,
+        -0.0004,
+        1.0,
+        0.001,
+        -0.0002,
+        -0.0002,
+        -0.0,
+        0.0001,
+        -0.0017,
+        -0.0005,
+        -0.0005,
+        0.0003,
+        -0.0001,
+        -0.0031,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0023,
+        0.0018,
+        0.001,
+        1.0,
+        -0.0002,
+        0.0051,
+        -0.0006,
+        -0.0065,
+        0.0002,
+        -0.0,
+        -0.0008,
+        0.0014,
+        -0.0014,
+        0.0033,
+        0.0008,
+        -0.0001,
+        -0.0013
+      ],
+      [
+        0.0003,
+        -0.0004,
+        -0.0002,
+        -0.0002,
+        1.0,
+        0.0067,
+        -0.0,
+        0.0071,
+        0.0013,
+        0.0007,
+        0.0013,
+        0.0021,
+        0.0081,
+        0.0061,
+        0.0,
+        0.0014,
+        0.0004
+      ],
+      [
+        0.0035,
+        -0.0256,
+        -0.0002,
+        0.0051,
+        0.0067,
+        1.0,
+        -0.002,
+        -0.0064,
+        0.0033,
+        0.0006,
+        0.002,
+        0.0017,
+        0.0019,
+        0.0078,
+        0.0004,
+        0.0011,
+        -0.0003
+      ],
+      [
+        -0.0004,
+        -0.0,
+        -0.0,
+        -0.0006,
+        -0.0,
+        -0.002,
+        1.0,
+        -0.0109,
+        0.0006,
+        -0.0,
+        0.0016,
+        0.0037,
+        -0.0003,
+        -0.0307,
+        -0.0001,
+        0.0017,
+        -0.0044
+      ],
+      [
+        -0.0114,
+        -0.0153,
+        0.0001,
+        -0.0065,
+        0.0071,
+        -0.0064,
+        -0.0109,
+        1.0,
+        0.0895,
+        -0.001,
+        0.0006,
+        -0.0058,
+        -0.007,
+        -0.0349,
+        -0.0032,
+        0.0013,
+        -0.0095
+      ],
+      [
+        -0.0003,
+        0.0036,
+        -0.0017,
+        0.0002,
+        0.0013,
+        0.0033,
+        0.0006,
+        0.0895,
+        1.0,
+        0.0028,
+        0.005,
+        0.0006,
+        0.0131,
+        0.0202,
+        0.001,
+        0.004,
+        -0.0016
+      ],
+      [
+        -0.0,
+        -0.0014,
+        -0.0005,
+        -0.0,
+        0.0007,
+        0.0006,
+        -0.0,
+        -0.001,
+        0.0028,
+        1.0,
+        0.0043,
+        0.106,
+        0.1443,
+        0.0171,
+        0.0001,
+        0.0647,
+        0.0036
+      ],
+      [
+        -0.0005,
+        0.0019,
+        -0.0005,
+        -0.0008,
+        0.0013,
+        0.002,
+        0.0016,
+        0.0006,
+        0.005,
+        0.0043,
+        1.0,
+        0.0084,
+        0.0191,
+        0.1265,
+        0.0032,
+        0.005,
+        0.0217
+      ],
+      [
+        -0.0008,
+        -0.0013,
+        0.0003,
+        0.0014,
+        0.0021,
+        0.0017,
+        0.0037,
+        -0.0058,
+        0.0006,
+        0.106,
+        0.0084,
+        1.0,
+        0.2691,
+        0.0244,
+        0.0005,
+        0.2441,
+        0.0088
+      ],
+      [
+        -0.0008,
+        -0.0058,
+        -0.0001,
+        -0.0014,
+        0.0081,
+        0.0019,
+        -0.0003,
+        -0.007,
+        0.0131,
+        0.1443,
+        0.0191,
+        0.2691,
+        1.0,
+        0.0513,
+        0.0008,
+        0.191,
+        0.0174
+      ],
+      [
+        -0.0038,
+        0.0207,
+        -0.0031,
+        0.0033,
+        0.0061,
+        0.0078,
+        -0.0307,
+        -0.0349,
+        0.0202,
+        0.0171,
+        0.1265,
+        0.0244,
+        0.0513,
+        1.0,
+        0.0164,
+        0.0236,
+        0.031
+      ],
+      [
+        0.0001,
+        0.0005,
+        0.0,
+        0.0008,
+        0.0,
+        0.0004,
+        -0.0001,
+        -0.0032,
+        0.001,
+        0.0001,
+        0.0032,
+        0.0005,
+        0.0008,
+        0.0164,
+        1.0,
+        0.0002,
+        -0.0001
+      ],
+      [
+        -0.0003,
+        -0.0002,
+        0.0,
+        -0.0001,
+        0.0014,
+        0.0011,
+        0.0017,
+        0.0013,
+        0.004,
+        0.0647,
+        0.005,
+        0.2441,
+        0.191,
+        0.0236,
+        0.0002,
+        1.0,
+        0.0066
+      ],
+      [
+        -0.0002,
+        0.0038,
+        0.0,
+        -0.0013,
+        0.0004,
+        -0.0003,
+        -0.0044,
+        -0.0095,
+        -0.0016,
+        0.0036,
+        0.0217,
+        0.0088,
+        0.0174,
+        0.031,
+        -0.0001,
+        0.0066,
+        1.0
+      ]
+    ]
+  },
+  "metrics": [
+    {
+      "model": "linear_regression",
+      "split": "valid",
+      "auc": 0.519184,
+      "accuracy": 0.663457,
+      "precision": 0.35023,
+      "recall": 0.057014,
+      "f1": 0.098065,
+      "positive_rate": 0.320896,
+      "n_samples": 4154,
+      "tp": 76,
+      "fp": 141,
+      "tn": 2680,
+      "fn": 1257
+    },
+    {
+      "model": "linear_regression",
+      "split": "test",
+      "auc": 0.525101,
+      "accuracy": 0.765159,
+      "precision": 0.245509,
+      "recall": 0.101737,
+      "f1": 0.14386,
+      "positive_rate": 0.193936,
+      "n_samples": 2078,
+      "tp": 41,
+      "fp": 126,
+      "tn": 1549,
+      "fn": 362
+    },
+    {
+      "model": "logistic_regression",
+      "split": "valid",
+      "auc": 0.515149,
+      "accuracy": 0.662013,
+      "precision": 0.347639,
+      "recall": 0.060765,
+      "f1": 0.103448,
+      "positive_rate": 0.320896,
+      "n_samples": 4154,
+      "tp": 81,
+      "fp": 152,
+      "tn": 2669,
+      "fn": 1252
+    },
+    {
+      "model": "logistic_regression",
+      "split": "test",
+      "auc": 0.528348,
+      "accuracy": 0.763715,
+      "precision": 0.252809,
+      "recall": 0.111663,
+      "f1": 0.154905,
+      "positive_rate": 0.193936,
+      "n_samples": 2078,
+      "tp": 45,
+      "fp": 133,
+      "tn": 1542,
+      "fn": 358
+    },
+    {
+      "model": "decision_tree",
+      "split": "valid",
+      "auc": 0.564701,
+      "accuracy": 0.599182,
+      "precision": 0.368463,
+      "recall": 0.348837,
+      "f1": 0.358382,
+      "positive_rate": 0.320896,
+      "n_samples": 4154,
+      "tp": 465,
+      "fp": 797,
+      "tn": 2024,
+      "fn": 868
+    },
+    {
+      "model": "decision_tree",
+      "split": "test",
+      "auc": 0.597687,
+      "accuracy": 0.634264,
+      "precision": 0.249649,
+      "recall": 0.441687,
+      "f1": 0.318996,
+      "positive_rate": 0.193936,
+      "n_samples": 2078,
+      "tp": 178,
+      "fp": 535,
+      "tn": 1140,
+      "fn": 225
+    },
+    {
+      "model": "random_forest",
+      "split": "valid",
+      "auc": 0.584652,
+      "accuracy": 0.647569,
+      "precision": 0.431414,
+      "recall": 0.309077,
+      "f1": 0.36014,
+      "positive_rate": 0.320896,
+      "n_samples": 4154,
+      "tp": 412,
+      "fp": 543,
+      "tn": 2278,
+      "fn": 921
+    },
+    {
+      "model": "random_forest",
+      "split": "test",
+      "auc": 0.630251,
+      "accuracy": 0.725698,
+      "precision": 0.336595,
+      "recall": 0.426799,
+      "f1": 0.376368,
+      "positive_rate": 0.193936,
+      "n_samples": 2078,
+      "tp": 172,
+      "fp": 339,
+      "tn": 1336,
+      "fn": 231
+    }
+  ],
+  "feature_importance": [
+    {
+      "model": "linear_regression",
+      "feature": "企业倍数(EV除EBITDA)",
+      "importance": 0.008781,
+      "raw_value": 0.001034
+    },
+    {
+      "model": "linear_regression",
+      "feature": "市净率PB(MRQ)",
+      "importance": 0.074009,
+      "raw_value": -0.008713
+    },
+    {
+      "model": "linear_regression",
+      "feature": "市现率PCF(现金净流量TTM)",
+      "importance": 0.069396,
+      "raw_value": -0.00817
+    },
+    {
+      "model": "linear_regression",
+      "feature": "市现率PCF(经营现金流TTM)",
+      "importance": 0.029805,
+      "raw_value": 0.003509
+    },
+    {
+      "model": "linear_regression",
+      "feature": "市盈率PE(TTM)",
+      "importance": 0.043843,
+      "raw_value": 0.005162
+    },
+    {
+      "model": "linear_regression",
+      "feature": "市盈率PE(TTM,扣除非经常性损益)",
+      "importance": 0.025993,
+      "raw_value": 0.00306
+    },
+    {
+      "model": "linear_regression",
+      "feature": "市销率PS(TTM)",
+      "importance": 0.028657,
+      "raw_value": -0.003374
+    },
+    {
+      "model": "linear_regression",
+      "feature": "股息率(近12个月)",
+      "importance": 0.163427,
+      "raw_value": 0.019241
+    },
+    {
+      "model": "linear_regression",
+      "feature": "MV",
+      "importance": 0.203224,
+      "raw_value": -0.023927
+    },
+    {
+      "model": "linear_regression",
+      "feature": "净利润同比增长率",
+      "importance": 0.002271,
+      "raw_value": 0.000267
+    },
+    {
+      "model": "linear_regression",
+      "feature": "净资产同比增长率",
+      "importance": 0.01389,
+      "raw_value": 0.001635
+    },
+    {
+      "model": "linear_regression",
+      "feature": "利润总额(同比增长率)",
+      "importance": 0.08628,
+      "raw_value": 0.010158
+    },
+    {
+      "model": "linear_regression",
+      "feature": "基本每股收益(同比增长率)",
+      "importance": 0.090878,
+      "raw_value": 0.010699
+    },
+    {
+      "model": "linear_regression",
+      "feature": "总资产同比增长率",
+      "importance": 0.116287,
+      "raw_value": -0.013691
+    },
+    {
+      "model": "linear_regression",
+      "feature": "现金净流量同比增长率",
+      "importance": 0.001251,
+      "raw_value": 0.000147
+    },
+    {
+      "model": "linear_regression",
+      "feature": "营业利润(同比增长率)",
+      "importance": 0.035072,
+      "raw_value": 0.004129
+    },
+    {
+      "model": "linear_regression",
+      "feature": "营业总收入(同比增长率)",
+      "importance": 0.006935,
+      "raw_value": -0.000816
+    },
+    {
+      "model": "logistic_regression",
+      "feature": "企业倍数(EV除EBITDA)",
+      "importance": 0.005617,
+      "raw_value": 0.004259
+    },
+    {
+      "model": "logistic_regression",
+      "feature": "市净率PB(MRQ)",
+      "importance": 0.274135,
+      "raw_value": -0.207835
+    },
+    {
+      "model": "logistic_regression",
+      "feature": "市现率PCF(现金净流量TTM)",
+      "importance": 0.068161,
+      "raw_value": -0.051676
+    },
+    {
+      "model": "logistic_regression",
+      "feature": "市现率PCF(经营现金流TTM)",
+      "importance": 0.01996,
+      "raw_value": 0.015133
+    },
+    {
+      "model": "logistic_regression",
+      "feature": "市盈率PE(TTM)",
+      "importance": 0.061076,
+      "raw_value": 0.046304
+    },
+    {
+      "model": "logistic_regression",
+      "feature": "市盈率PE(TTM,扣除非经常性损益)",
+      "importance": 0.012343,
+      "raw_value": 0.009358
+    },
+    {
+      "model": "logistic_regression",
+      "feature": "市销率PS(TTM)",
+      "importance": 0.020865,
+      "raw_value": -0.015819
+    },
+    {
+      "model": "logistic_regression",
+      "feature": "股息率(近12个月)",
+      "importance": 0.101516,
+      "raw_value": 0.076964
+    },
+    {
+      "model": "logistic_regression",
+      "feature": "MV",
+      "importance": 0.1698,
+      "raw_value": -0.128734
+    },
+    {
+      "model": "logistic_regression",
+      "feature": "净利润同比增长率",
+      "importance": 0.001206,
+      "raw_value": -0.000914
+    },
+    {
+      "model": "logistic_regression",
+      "feature": "净资产同比增长率",
+      "importance": 0.00902,
+      "raw_value": 0.006839
+    },
+    {
+      "model": "logistic_regression",
+      "feature": "利润总额(同比增长率)",
+      "importance": 0.08446,
+      "raw_value": 0.064033
+    },
+    {
+      "model": "logistic_regression",
+      "feature": "基本每股收益(同比增长率)",
+      "importance": 0.065894,
+      "raw_value": 0.049957
+    },
+    {
+      "model": "logistic_regression",
+      "feature": "总资产同比增长率",
+      "importance": 0.08462,
+      "raw_value": -0.064155
+    },
+    {
+      "model": "logistic_regression",
+      "feature": "现金净流量同比增长率",
+      "importance": 0.001059,
+      "raw_value": 0.000803
+    },
+    {
+      "model": "logistic_regression",
+      "feature": "营业利润(同比增长率)",
+      "importance": 0.017673,
+      "raw_value": 0.013399
+    },
+    {
+      "model": "logistic_regression",
+      "feature": "营业总收入(同比增长率)",
+      "importance": 0.002594,
+      "raw_value": -0.001967
+    },
+    {
+      "model": "decision_tree",
+      "feature": "企业倍数(EV除EBITDA)",
+      "importance": 0.071429,
+      "raw_value": 2.0
+    },
+    {
+      "model": "decision_tree",
+      "feature": "市净率PB(MRQ)",
+      "importance": 0.142857,
+      "raw_value": 4.0
+    },
+    {
+      "model": "decision_tree",
+      "feature": "市现率PCF(现金净流量TTM)",
+      "importance": 0.0,
+      "raw_value": 0.0
+    },
+    {
+      "model": "decision_tree",
+      "feature": "市现率PCF(经营现金流TTM)",
+      "importance": 0.035714,
+      "raw_value": 1.0
+    },
+    {
+      "model": "decision_tree",
+      "feature": "市盈率PE(TTM)",
+      "importance": 0.035714,
+      "raw_value": 1.0
+    },
+    {
+      "model": "decision_tree",
+      "feature": "市盈率PE(TTM,扣除非经常性损益)",
+      "importance": 0.035714,
+      "raw_value": 1.0
+    },
+    {
+      "model": "decision_tree",
+      "feature": "市销率PS(TTM)",
+      "importance": 0.035714,
+      "raw_value": 1.0
+    },
+    {
+      "model": "decision_tree",
+      "feature": "股息率(近12个月)",
+      "importance": 0.0,
+      "raw_value": 0.0
+    },
+    {
+      "model": "decision_tree",
+      "feature": "MV",
+      "importance": 0.321429,
+      "raw_value": 9.0
+    },
+    {
+      "model": "decision_tree",
+      "feature": "净利润同比增长率",
+      "importance": 0.0,
+      "raw_value": 0.0
+    },
+    {
+      "model": "decision_tree",
+      "feature": "净资产同比增长率",
+      "importance": 0.0,
+      "raw_value": 0.0
+    },
+    {
+      "model": "decision_tree",
+      "feature": "利润总额(同比增长率)",
+      "importance": 0.035714,
+      "raw_value": 1.0
+    },
+    {
+      "model": "decision_tree",
+      "feature": "基本每股收益(同比增长率)",
+      "importance": 0.107143,
+      "raw_value": 3.0
+    },
+    {
+      "model": "decision_tree",
+      "feature": "总资产同比增长率",
+      "importance": 0.035714,
+      "raw_value": 1.0
+    },
+    {
+      "model": "decision_tree",
+      "feature": "现金净流量同比增长率",
+      "importance": 0.035714,
+      "raw_value": 1.0
+    },
+    {
+      "model": "decision_tree",
+      "feature": "营业利润(同比增长率)",
+      "importance": 0.071429,
+      "raw_value": 2.0
+    },
+    {
+      "model": "decision_tree",
+      "feature": "营业总收入(同比增长率)",
+      "importance": 0.035714,
+      "raw_value": 1.0
+    },
+    {
+      "model": "random_forest",
+      "feature": "企业倍数(EV除EBITDA)",
+      "importance": 0.069072,
+      "raw_value": 67.0
+    },
+    {
+      "model": "random_forest",
+      "feature": "市净率PB(MRQ)",
+      "importance": 0.115464,
+      "raw_value": 112.0
+    },
+    {
+      "model": "random_forest",
+      "feature": "市现率PCF(现金净流量TTM)",
+      "importance": 0.030928,
+      "raw_value": 30.0
+    },
+    {
+      "model": "random_forest",
+      "feature": "市现率PCF(经营现金流TTM)",
+      "importance": 0.036082,
+      "raw_value": 35.0
+    },
+    {
+      "model": "random_forest",
+      "feature": "市盈率PE(TTM)",
+      "importance": 0.051546,
+      "raw_value": 50.0
+    },
+    {
+      "model": "random_forest",
+      "feature": "市盈率PE(TTM,扣除非经常性损益)",
+      "importance": 0.049485,
+      "raw_value": 48.0
+    },
+    {
+      "model": "random_forest",
+      "feature": "市销率PS(TTM)",
+      "importance": 0.062887,
+      "raw_value": 61.0
+    },
+    {
+      "model": "random_forest",
+      "feature": "股息率(近12个月)",
+      "importance": 0.038144,
+      "raw_value": 37.0
+    },
+    {
+      "model": "random_forest",
+      "feature": "MV",
+      "importance": 0.141237,
+      "raw_value": 137.0
+    },
+    {
+      "model": "random_forest",
+      "feature": "净利润同比增长率",
+      "importance": 0.060825,
+      "raw_value": 59.0
+    },
+    {
+      "model": "random_forest",
+      "feature": "净资产同比增长率",
+      "importance": 0.051546,
+      "raw_value": 50.0
+    },
+    {
+      "model": "random_forest",
+      "feature": "利润总额(同比增长率)",
+      "importance": 0.050515,
+      "raw_value": 49.0
+    },
+    {
+      "model": "random_forest",
+      "feature": "基本每股收益(同比增长率)",
+      "importance": 0.059794,
+      "raw_value": 58.0
+    },
+    {
+      "model": "random_forest",
+      "feature": "总资产同比增长率",
+      "importance": 0.031959,
+      "raw_value": 31.0
+    },
+    {
+      "model": "random_forest",
+      "feature": "现金净流量同比增长率",
+      "importance": 0.048454,
+      "raw_value": 47.0
+    },
+    {
+      "model": "random_forest",
+      "feature": "营业利润(同比增长率)",
+      "importance": 0.063918,
+      "raw_value": 62.0
+    },
+    {
+      "model": "random_forest",
+      "feature": "营业总收入(同比增长率)",
+      "importance": 0.038144,
+      "raw_value": 37.0
+    }
+  ]
+}
