@@ -123,6 +123,7 @@
       font-size: 13px;
     }
 
+    .task6 .task-no { background: #0f766e; }
     .task5 .task-no { background: #dc2626; }
     .task4 .task-no { background: #2563eb; }
     .task3 .task-no { background: #168567; }
@@ -161,12 +162,19 @@
     <section class="hero">
       <div>
         <h1>北大光华作业面板</h1>
-        <p>选择课程任务进入对应的量化分析看板。Task5 是最新的机器学习分类模型、AUC 与 ROC 分析。</p>
+        <p>选择课程任务进入对应的量化分析看板。Task6 是最新的机器学习选股、Top20 轮动与权重比较。</p>
       </div>
-      <div class="updated">已部署 Task1 - Task5</div>
+      <div class="updated">已部署 Task1 - Task6</div>
     </section>
 
     <section class="task-grid" aria-label="作业任务入口">
+      <a class="task-card task6" href="task6/design/ml_strategy_panel.html">
+        <div class="task-top"><span class="task-no">06</span><span class="task-tag">最新</span></div>
+        <h2>机器学习选股回测</h2>
+        <p>财务因子驱动的 Top20 轮动、等资金与预测值加权比较、双基准和模型评估。</p>
+        <span class="task-link">打开 Task6</span>
+      </a>
+
       <a class="task-card task5" href="task5/design/ml_classification_panel.html">
         <div class="task-top"><span class="task-no">05</span><span class="task-tag">最新</span></div>
         <h2>机器学习分类模型</h2>

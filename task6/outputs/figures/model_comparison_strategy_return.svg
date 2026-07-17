@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="420" viewBox="0 0 760 420">
+<rect width="760" height="420" fill="#ffffff"/>
+<text x="24" y="34" font-family="Arial" font-size="20" fill="#111827">Model comparison: strategy return</text>
+<line x1="70" y1="80.0" x2="690" y2="80.0" stroke="#d1d5db"/>
+<rect x="90" y="80.0" width="56" height="20.0" fill="#2563eb"/><text x="118" y="360" font-family="Arial" font-size="12" text-anchor="middle">决策树</text><text x="118" y="72.0" font-family="Arial" font-size="12" text-anchor="middle">-0.84%</text><rect x="240" y="80.0" width="56" height="240.0" fill="#2563eb"/><text x="268" y="360" font-family="Arial" font-size="12" text-anchor="middle">线性回归</text><text x="268" y="72.0" font-family="Arial" font-size="12" text-anchor="middle">-10.12%</text><rect x="390" y="80.0" width="56" height="240.0" fill="#2563eb"/><text x="418" y="360" font-family="Arial" font-size="12" text-anchor="middle">逻辑回归</text><text x="418" y="72.0" font-family="Arial" font-size="12" text-anchor="middle">-10.12%</text><rect x="540" y="80.0" width="56" height="100.8" fill="#2563eb"/><text x="568" y="360" font-family="Arial" font-size="12" text-anchor="middle">随机森林</text><text x="568" y="72.0" font-family="Arial" font-size="12" text-anchor="middle">-4.25%</text>
+</svg>

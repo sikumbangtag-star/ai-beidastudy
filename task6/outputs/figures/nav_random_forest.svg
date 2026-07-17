@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="420" viewBox="0 0 760 420">
+<rect width="760" height="420" fill="#ffffff"/>
+<text x="24" y="34" font-family="Arial" font-size="20" fill="#111827">random_forest strategy NAV</text>
+<line x1="70" y1="330" x2="650" y2="330" stroke="#d1d5db"/>
+<line x1="70" y1="70" x2="70" y2="330" stroke="#d1d5db"/>
+<path d="M 70.0 194.2" fill="none" stroke="#2563eb" stroke-width="4"/>
+<path d="M 70.0 257.8" fill="none" stroke="#16a34a" stroke-width="3"/>
+<path d="M 70.0 330.0" fill="none" stroke="#d97706" stroke-width="3"/>
+<text x="70" y="380" font-family="Arial" font-size="13" fill="#2563eb">strategy</text>
+<text x="160" y="380" font-family="Arial" font-size="13" fill="#16a34a">equal-weight</text>
+<text x="280" y="380" font-family="Arial" font-size="13" fill="#d97706">HS300</text>
+</svg>

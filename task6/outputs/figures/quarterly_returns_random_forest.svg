@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="420" viewBox="0 0 760 420">
+<rect width="760" height="420" fill="#ffffff"/>
+<text x="24" y="34" font-family="Arial" font-size="20" fill="#111827">random_forest quarterly returns</text>
+<line x1="70" y1="80.0" x2="650" y2="80.0" stroke="#d1d5db"/>
+<rect x="90" y="80.0" width="22" height="66.9" fill="#2563eb"/><rect x="118" y="80.0" width="22" height="148.0" fill="#16a34a"/><rect x="146" y="80.0" width="22" height="240.0" fill="#d97706"/><text x="124" y="360" font-family="Arial" font-size="12" text-anchor="middle">2022-06</text>
+<text x="70" y="395" font-family="Arial" font-size="13" fill="#2563eb">strategy</text>
+<text x="160" y="395" font-family="Arial" font-size="13" fill="#16a34a">equal-weight</text>
+<text x="280" y="395" font-family="Arial" font-size="13" fill="#d97706">HS300</text>
+</svg>

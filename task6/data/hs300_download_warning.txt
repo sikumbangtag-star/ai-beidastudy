@@ -1,0 +1,2 @@
+Tushare index_daily error: 抱歉，您访问接口(index_daily)频率超限(1次/分钟)，具体频次详情：https://tushare.pro/document/1?doc_id=108。
+Eastmoney fallback failed: HTTPSConnectionPool(host='push2his.eastmoney.com', port=443): Max retries exceeded with url: /api/qt/stock/kline/get?secid=1.000300&fields1=f1%2Cf2%2Cf3%2Cf4%2Cf5%2Cf6&fields2=f51%2Cf52%2Cf53%2Cf54%2Cf55%2Cf56%2Cf57%2Cf58%2Cf59%2Cf60%2Cf61&klt=101&fqt=1&beg=20210701&end=20220930 (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))
